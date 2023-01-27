@@ -1,4 +1,4 @@
-import { db } from "../config/Database.js";
+import db from "../config/Database.js";
 import bcrypt from "bcrypt"
 
 export const login = (async (req, res) => {
@@ -25,3 +25,33 @@ export const login = (async (req, res) => {
 
 }
 })
+
+export async function cadastro(req, res) {
+  const { nome, email, senha } = req.body
+
+  const senhaHashed = bcrypt.hashSync(senha, 10)
+
+  try {
+
+    const jaExiste = await db.collection('usuarios').findOne({
+      $or: [
+        {nome},
+        {email}
+      ]
+    })
+    
+    if(jaExiste)
+      return res.status(409).send("Nome ou Email já cadastrado")
+
+    await db.collection("usuarios").insertOne({ 
+      nome, 
+      email, 
+      senha: senhaHashed 
+    })
+    res.status(201).send("Usuario criado com sucesso!")
+
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+
