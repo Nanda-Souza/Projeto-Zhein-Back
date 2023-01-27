@@ -16,3 +16,4 @@ try{
 }
 
 export default db
+export const cartCollection = db.collection("cart");
