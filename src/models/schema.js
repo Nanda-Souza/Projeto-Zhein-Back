@@ -1,8 +1,10 @@
-import joi, { object } from "joi";
+import joi from "joi";
 
 
-
-
+export const pagamentoSchema = joi.object({
+    nome: joi.string().min(3).required(),
+    cartao: joi.number().required()   
+})
 
 
 export const carrinhoSchema = joi.object({

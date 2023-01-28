@@ -9,4 +9,5 @@ authRoute.post("/", validateSchema(loginSchema), login)
 
 authRoute.post("/cadastro", validateSchema(userSchema), cadastro)
 
+
 export default authRoute
