@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from 'dotenv'
 import authRoute from "./routes/authRoute.js";
 import pagamentoRoute from "./routes/pagamentoRoute.js"
+import produtoRoute from "./routes/produtoRoute.js"
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ server.use(cors())
 
 server.use(express.json());
 
-server.use([authRoute, pagamentoRoute])
+server.use([authRoute, pagamentoRoute, produtoRoute])
 
 
 //

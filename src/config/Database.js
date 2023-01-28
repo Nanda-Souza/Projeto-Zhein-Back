@@ -17,3 +17,5 @@ try{
 
 export default db
 export const cartCollection = db.collection("cart");
+export const produtoCollection = db.collection("produtos");
+export const sessoesCollection = db.collection("sessoes");
