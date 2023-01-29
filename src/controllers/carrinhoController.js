@@ -1,16 +1,17 @@
 import { cartCollection } from "../config/Database.js";
 import { ObjectId } from "mongodb";
 
-export async function postCarrinho(req, res) {
-  const { url, nome, valor } = req.body;
 
-  try {
-    await cartCollection.insertOne({ url, nome, valor });
-    res.sendStatus(201);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-}
+export async function postCarrinho(req, res){
+    const {url, nome, preco} = req.body;
+
+    try{
+        await cartCollection.insertOne({url, nome, preco});
+        res.sendStatus(201);
+    }catch(err){
+        res.status(500).send(err);
+    }
+};
 
 export async function getCarrinho(req, res) {
   try {

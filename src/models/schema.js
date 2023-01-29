@@ -1,6 +1,7 @@
 import joi from "joi";
 
 
+
 export const pagamentoSchema = joi.object({
     nome: joi.string().min(3).required(),
     cartao: joi.number().required()   
@@ -8,10 +9,11 @@ export const pagamentoSchema = joi.object({
 
 
 export const carrinhoSchema = joi.object({
-    url: joi.string().min(3).required(),
-    nome: joi.string().min(3).required(),
-    valor: joi.string().required()
+    url: joi.string().required(),
+
+    preco: joi.string().required()
 })
+
 
 export const produtoSchema = joi.object({
     nome: joi.string().required(),
@@ -19,4 +21,5 @@ export const produtoSchema = joi.object({
     descricao: joi.string().required(),
     preco: joi.number().precision(2).required()
 });
+
 
