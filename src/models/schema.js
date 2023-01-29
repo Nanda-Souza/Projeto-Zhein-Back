@@ -10,7 +10,7 @@ export const pagamentoSchema = joi.object({
 
 export const carrinhoSchema = joi.object({
     url: joi.string().required(),
-
+    nome: joi.string().required(),
     preco: joi.string().required()
 })
 
