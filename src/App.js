@@ -4,6 +4,10 @@ import dotenv from 'dotenv'
 import authRoute from "./routes/authRoute.js";
 import carrinhoRoute from "./routes/carrinhoRoute.js";
 
+import pagamentoRoute from "./routes/pagamentoRoute.js"
+import produtoRoute from "./routes/produtoRoute.js"
+
+
 dotenv.config();
 
 const server = express()
@@ -12,7 +16,7 @@ server.use(cors())
 
 server.use(express.json());
 
-server.use(authRoute)
+server.use([authRoute, pagamentoRoute, produtoRoute])
 
 server.use(carrinhoRoute);
 

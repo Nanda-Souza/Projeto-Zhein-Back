@@ -1,5 +1,6 @@
 import db from "../config/Database.js";
 import bcrypt from "bcrypt"
+import { v4 as uuidV4 } from "uuid";
 
 export const login = (async (req, res) => {
   const { email, senha } = req.body;
