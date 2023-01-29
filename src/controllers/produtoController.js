@@ -13,9 +13,23 @@ export async function addProduto(req, res) {
         preco        
     })
   
-      res.status(200).send("Produto Adicionado!")
+      res.status(201).send("Produto Adicionado!")
   
     } catch (error) {
       res.status(500).send(error.message)
     }
   }
+
+  export async function getProdutos(req, res) {
+          
+
+  try {   
+    
+    const listaProdutos = await produtoCollection.find({ }).toArray() 
+    
+    return res.status(200).send(listaProdutos)
+
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
