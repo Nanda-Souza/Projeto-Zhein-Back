@@ -1,9 +1,12 @@
 import { postCarrinho, getCarrinho, deletaCarrinho } from "../controllers/carrinhoController.js";
 import { Router } from "express";
 import {carrinhoSchemaValidate} from "../middlewares/carrinhoSchemaValidate.js"
+// import { carrinhoSchema } from "../models/schema.js";
 
-const router = Router();
+const authRoute = Router();
 
-router.post("/carrinho", carrinhoSchemaValidate ,postCarrinho);
-router.get("/carrinho", getCarrinho);
-router.delete("/carrinho", deletaCarrinho)
+authRoute.post("/carrinho", carrinhoSchemaValidate ,postCarrinho);
+authRoute.get("/carrinho", getCarrinho);
+authRoute.delete("/carrinho/:id", deletaCarrinho);
+
+export default authRoute;

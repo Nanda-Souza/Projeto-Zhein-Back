@@ -1,4 +1,4 @@
-import joi, { object } from "joi";
+import joi from "joi";
 
 
 
@@ -6,7 +6,7 @@ import joi, { object } from "joi";
 
 
 export const carrinhoSchema = joi.object({
-    url: joi.string().min(3).required(),
+    url: joi.string().required(),
     nome: joi.string().min(3).required(),
-    valor: joi.string().required()
+    preco: joi.string().required()
 })
