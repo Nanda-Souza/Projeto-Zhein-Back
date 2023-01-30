@@ -16,12 +16,7 @@ server.use(cors())
 
 server.use(express.json());
 
-server.use([authRoute, pagamentoRoute, produtoRoute])
-
-server.use(carrinhoRoute);
-
-
-//
+server.use([authRoute, pagamentoRoute, produtoRoute, carrinhoRoute])
 
 
 
