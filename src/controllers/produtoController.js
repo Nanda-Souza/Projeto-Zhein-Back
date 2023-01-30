@@ -1,4 +1,5 @@
 import { produtoCollection } from "../config/Database.js";
+import { ObjectId } from "mongodb";
 
 export async function addProduto(req, res) {
     
@@ -31,5 +32,17 @@ export async function addProduto(req, res) {
 
   } catch (error) {
     res.status(500).send(error)
+  }
+}
+
+export async function getIdProduto(req, res){
+  const id = req.params.id;
+  const achei = await produtoCollection.findOne({_id: ObjectId(id)});
+  if(!achei)return res.sendStatus(404);
+  try{
+
+    res.send(achei);
+  }catch(err){
+    res.status(500).send(err);
   }
 }
