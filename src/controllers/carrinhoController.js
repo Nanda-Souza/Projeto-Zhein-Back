@@ -1,35 +1,24 @@
-import { cartCollection, sessoesCollection } from "../config/Database.js";
+import { cartCollection } from "../config/Database.js";
 import { ObjectId } from "mongodb";
 
-
-export async function postCarrinho(req, res){
-    const algumaCoisa = req.body;
-    console.log(algumaCoisa);
-
-    try{
-        await cartCollection.insertOne({algumaCoisa});
-        res.sendStatus(201);
-    }catch(err){
-        res.status(500).send(err);
-    }
-};
-
-export async function getCarrinho(req, res) {
-  const {authorization} = req.headers;
-
-  const token = authorization?.replace("Bearer ", "");
-
-  if(!token)return res.status(422).send("Informe o token!");
+export async function postCarrinho(req, res) {
+  const { nome, preco, id, url } = req.body;
+  console.log(nome, preco, id, url);
 
   try {
-    const userExist = await sessoesCollection.findOne({token});
+    await cartCollection.insertOne({ nome, preco, id, url });
+    res.sendStatus(201);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
 
-    if(!userExist)return res.status(401).send("Você não tem autorização para acessar o carrinho");
+export async function getCarrinho(req, res) {
+  try {
+    const listaCarrinho = await cartCollection.find().toArray();
+    console.log(listaCarrinho)
 
-
-    const listaCarrinho = await cartCollection.find({_id: userExist.idUsuario}).toArray();
-
-    if(!listaCarrinho)return res.sendStatus(401);
+    if (!listaCarrinho) return res.sendStatus(401);
 
     res.send(listaCarrinho);
   } catch (err) {
